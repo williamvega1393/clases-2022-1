@@ -1,16 +1,11 @@
 package com.company.views;
 
-import com.company.constants.Routes;
-import com.company.controllers.MainController;
-import com.company.views.home.JPanelHome;
-import com.company.views.register.JPanelRegister;
-
 import javax.swing.*;
 import java.awt.*;
 
 public class JFrameMain extends JFrame {
 
-    private  MainController mainController;
+    private final MainListener mainListener;
 
     private JMenuBar jMenuBar;
     private JMenu jMenuFile;
@@ -24,15 +19,12 @@ public class JFrameMain extends JFrame {
     private JMenuItem jMenuItemRegister;
 
     // Vistas
-    private JPanel jPanel;
+    public JPanel jPanel;
 
     public JFrameMain() throws HeadlessException {
-         mainController = new MainController();
+        mainListener = new MainListener(this);
         this.setLayout(null);
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        this.setBounds(0, 0, 1200, 800);
         setMenu();
-        goTo(Routes.Home);
     }
 
     private void setMenu() {
@@ -59,27 +51,15 @@ public class JFrameMain extends JFrame {
         jMenuBar.add(jMenuNavigate);
 
         jMenuItemHome = new JMenuItem("Home");
-        jMenuItemHome.addActionListener(e -> goTo(Routes.Home));
+        jMenuItemHome.addActionListener(mainListener);
+        jMenuItemHome.setActionCommand(ActionsMain.GO_TO_HOME.name());
         jMenuNavigate.add(jMenuItemHome);
 
         jMenuItemRegister = new JMenuItem("Register");
-        jMenuItemRegister.addActionListener(e -> goTo(Routes.Register));
+        jMenuItemRegister.addActionListener(mainListener);
+        jMenuItemRegister.setActionCommand(ActionsMain.GO_TO_REGISTER.name());
         jMenuNavigate.add(jMenuItemRegister);
 
     }
 
-    private void clean() {
-        if (jPanel != null) {
-            this.remove(jPanel);
-        }
-    }
-
-    private void goTo(Routes route) {
-        System.out.println(route.name());
-        clean();
-        jPanel = mainController.navigate(route);
-        jPanel.setBounds(10, 10, 1200, 800);
-        this.add(jPanel);
-        this.repaint();
-    }
 }
