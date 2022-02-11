@@ -16,6 +16,6 @@ public class Main {
         jFrameMain.setLocationRelativeTo(null);
         jFrameMain.setVisible(true);
 
-        Router.instance.navigate(Routes.Home);
+        Router.instance.navigate(Routes.Register);
     }
 }
