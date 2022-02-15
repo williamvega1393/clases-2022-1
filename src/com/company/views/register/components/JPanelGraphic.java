@@ -38,11 +38,18 @@ public class JPanelGraphic extends JPanel {
     }
 
     public void moveDown() {
-        y += 5; // y = y + 5;
-        if (y > this.getHeight()) {
-            y = this.getHeight();
-        }
-        this.repaint();
+        ThreadDown threadDown = new ThreadDown(() -> {
+            try {
+                Thread.sleep(5000);
+                y += 5; // y = y + 5;
+                if (y > this.getHeight()) {
+                    y = this.getHeight();
+                }
+                this.repaint();
+            } catch (InterruptedException ignored) {
+            }
+        });
+        threadDown.start();
     }
 
     @Override
