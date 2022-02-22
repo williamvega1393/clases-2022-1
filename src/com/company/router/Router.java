@@ -1,5 +1,6 @@
 package com.company.router;
 
+import com.company.panels.JPanelPanels;
 import com.company.views.JFrameMain;
 import com.company.views.home.JPanelHome;
 import com.company.views.register.JPanelRegister;
@@ -14,6 +15,7 @@ public record Router(JFrameMain jFrameMain) {
         switch (route) {
             case Home -> goTo(new JPanelHome());
             case Register -> goTo(new JPanelRegister());
+            case Panels -> goTo(new JPanelPanels());
         }
     }
 

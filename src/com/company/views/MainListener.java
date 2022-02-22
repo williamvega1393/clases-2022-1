@@ -19,6 +19,7 @@ public class MainListener implements ActionListener {
         switch (actionsMain) {
             case GO_TO_HOME -> Router.instance.navigate(Routes.Home);
             case GO_TO_REGISTER -> Router.instance.navigate(Routes.Register);
+            case GO_TO_PANELS -> Router.instance.navigate(Routes.Panels);
         }
     }
 
