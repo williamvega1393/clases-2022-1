@@ -7,10 +7,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class MainListener implements ActionListener {
-    private JFrameMain jFrameMain;
 
-    public MainListener(JFrameMain jFrameMain) {
-        this.jFrameMain = jFrameMain;
+    public MainListener() {
     }
 
     @Override
@@ -22,6 +20,5 @@ public class MainListener implements ActionListener {
             case GO_TO_PANELS -> Router.instance.navigate(Routes.Panels);
         }
     }
-
 
 }

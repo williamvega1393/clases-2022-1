@@ -1,10 +1,9 @@
 package com.company.panels;
 
+import com.company.panels.components.JPanelBorderLayout;
+import com.company.panels.components.JPanelFlow;
+
 import javax.swing.*;
-import javax.swing.border.CompoundBorder;
-import javax.swing.border.EtchedBorder;
-import javax.swing.border.LineBorder;
-import java.awt.*;
 
 public class JPanelPanels extends JPanel {
 
@@ -18,14 +17,27 @@ public class JPanelPanels extends JPanel {
 //        jPanel.setBorder(new MatteBorder(5,5,30,30,Color.green));
 //        jPanel.setBorder(new BevelBorder(BevelBorder.LOWERED));
 //        jPanel.setBorder(new SoftBevelBorder(BevelBorder.RAISED) );
-        jPanel.setBorder(new CompoundBorder(
-                new EtchedBorder(), new LineBorder(Color.red)
-        ));
-        add(jPanel);
+//        jPanel.setBorder(new CompoundBorder(
+//                new EtchedBorder(), new LineBorder(Color.red)
+//        ));
+//        KeyListener keyListener = new KeyListener();
+//        jPanel.setBackground(new Color(67, 89, 129));
+//        jPanel.addKeyListener(keyListener);
+//        jPanel.setFocusable(true);
+//        add(jPanel);
+//        jPanel.requestFocusInWindow();
 
         JTextField jTextField = new JTextField();
         jTextField.setBounds(10, 250, 100, 30);
         jTextField.addKeyListener(new KeyListener());
         this.add(jTextField);
+
+        JPanelFlow jPanelFlow = new JPanelFlow();
+        jPanelFlow.setBounds(10, 300, 300, 300);
+        this.add(jPanelFlow);
+
+        JPanelBorderLayout jPanelBorderLayout = new JPanelBorderLayout();
+        jPanelBorderLayout.setBounds(320, 300, 300, 300);
+        this.add(jPanelBorderLayout);
     }
 }

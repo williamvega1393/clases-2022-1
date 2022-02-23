@@ -18,11 +18,8 @@ public class JFrameMain extends JFrame {
     private JMenuItem jMenuItemHome;
     private JMenuItem jMenuItemRegister;
 
-    // Vistas
-    public JPanel jPanel;
-
     public JFrameMain() throws HeadlessException {
-        mainListener = new MainListener(this);
+        mainListener = new MainListener();
         this.setLayout(null);
         setMenu();
     }

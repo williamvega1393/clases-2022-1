@@ -6,9 +6,11 @@ import java.awt.*;
 public class JPanelFlow extends JPanel {
 
     public JPanelFlow() {
+        setBackground(new Color(117, 104, 104));
+
         FlowLayout flowLayout = new FlowLayout();
         flowLayout.setAlignment(FlowLayout.RIGHT);
-        setLayout(flowLayout);
+        this.setLayout(flowLayout);
 
         JButton jButton1 = new JButton("jButton1");
         jButton1.setBounds(0, 0, 100, 30);

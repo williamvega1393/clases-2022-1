@@ -6,7 +6,6 @@ import com.company.views.home.JPanelHome;
 import com.company.views.register.JPanelRegister;
 
 import javax.swing.*;
-import java.awt.*;
 
 public record Router(JFrameMain jFrameMain) {
     public static Router instance = null;
@@ -20,11 +19,12 @@ public record Router(JFrameMain jFrameMain) {
     }
 
     private void goTo(JPanel jPanel) {
-        jFrameMain.getContentPane().removeAll();
-        jFrameMain.jPanel = jPanel;
-        jFrameMain.jPanel.setBounds(0, 0, jFrameMain.getWidth(), jFrameMain.getHeight());
-        jFrameMain.jPanel.setBackground(Color.white);
-        jFrameMain.add(jFrameMain.jPanel);
-        jFrameMain.repaint();
+        jFrameMain.setContentPane(jPanel);
+        jFrameMain.revalidate();
+//        jFrameMain.getContentPane().removeAll();
+//        jFrameMain.jPanel = jPanel;
+//        jFrameMain.jPanel.setBounds(0, 0, jFrameMain.getWidth(), jFrameMain.getHeight());
+//        jFrameMain.add(jFrameMain.jPanel);
+//        jFrameMain.repaint();
     }
 }
