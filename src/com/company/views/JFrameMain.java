@@ -17,10 +17,12 @@ public class JFrameMain extends JFrame {
     private JMenu jMenuNavigate;
     private JMenuItem jMenuItemHome;
     private JMenuItem jMenuItemRegister;
+    private JMenuItem jMenuItemPanels;
 
     public JFrameMain() throws HeadlessException {
         mainListener = new MainListener();
         this.setLayout(null);
+        addKeyListener(mainListener);
         setMenu();
     }
 
@@ -56,6 +58,11 @@ public class JFrameMain extends JFrame {
         jMenuItemRegister.addActionListener(mainListener);
         jMenuItemRegister.setActionCommand(ActionsMain.GO_TO_REGISTER.name());
         jMenuNavigate.add(jMenuItemRegister);
+
+        jMenuItemPanels = new JMenuItem("Panels");
+        jMenuItemPanels.addActionListener(mainListener);
+        jMenuItemPanels.setActionCommand(ActionsMain.GO_TO_PANELS.name());
+        jMenuNavigate.add(jMenuItemPanels);
 
     }
 
