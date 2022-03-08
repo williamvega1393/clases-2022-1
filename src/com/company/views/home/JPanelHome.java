@@ -86,7 +86,7 @@ public class JPanelHome extends JPanel {
         Session session = Session.getInstance(props,
                 new javax.mail.Authenticator() {
                     protected PasswordAuthentication getPasswordAuthentication() {
-                        return new PasswordAuthentication("apikey", "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");
+                        return new PasswordAuthentication("apikey", "**********");
                     }
                 });
 
