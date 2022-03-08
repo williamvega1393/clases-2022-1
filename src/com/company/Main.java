@@ -16,6 +16,6 @@ public class Main {
         jFrameMain.setVisible(true);
 
         Router.instance = new Router(jFrameMain);
-        Router.instance.navigate(Routes.Panels);
+        Router.instance.navigate(Routes.Home);
     }
 }

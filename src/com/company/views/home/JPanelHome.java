@@ -1,6 +1,10 @@
 package com.company.views.home;
 
+import javax.mail.*;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.swing.*;
+import java.util.Properties;
 
 public class JPanelHome extends JPanel {
 
@@ -14,6 +18,8 @@ public class JPanelHome extends JPanel {
     private JRadioButton jRadioButtonOption1;
     private JRadioButton jRadioButtonOption2;
     private JRadioButton jRadioButtonOption3;
+
+    private JButton jButtonSendEmail;
 
 
     public JPanelHome() {
@@ -58,5 +64,46 @@ public class JPanelHome extends JPanel {
         jRadioButtonOption3.addActionListener(e -> System.out.println("Opción 3"));
         this.add(jRadioButtonOption3);
         buttonGroup.add(jRadioButtonOption3);
+
+        jButtonSendEmail = new JButton("Enviar email");
+        jButtonSendEmail.addActionListener(e -> sendEmail(
+                "william.vega@uptc.edu.co",
+                "Prueba programación II",
+                "Este es el cuerpo del mensaje"
+        ));
+        jButtonSendEmail.setBounds(300, 100, 150, 30);
+        this.add(jButtonSendEmail);
+
+    }
+
+    private void sendEmail(String to, String subject, String body) {
+        Properties props = new Properties();
+        props.put("mail.smtp.host", "smtp.sendgrid.net");
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.port", "587");
+
+        Session session = Session.getInstance(props,
+                new javax.mail.Authenticator() {
+                    protected PasswordAuthentication getPasswordAuthentication() {
+                        return new PasswordAuthentication("apikey", "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");
+                    }
+                });
+
+        try {
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress("william.vega@uptc.edu.co"));
+            message.setRecipients(
+                    Message.RecipientType.TO,
+                    InternetAddress.parse(to)
+            );   //Se podrían añadir varios de la misma manera
+            message.setSubject(subject);
+            message.setText(body);
+            Transport.send(message);
+            System.out.println("ENVIADO");
+        } catch (MessagingException me) {
+            System.out.println(me);
+            me.printStackTrace();   //Si se produce un error
+        }
     }
 }
