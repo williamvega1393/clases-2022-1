@@ -1,9 +1,12 @@
 package com.company.views.home;
 
+import org.apache.poi.hssf.usermodel.*;
+
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.swing.*;
+import java.io.FileOutputStream;
 import java.util.Properties;
 
 public class JPanelHome extends JPanel {
@@ -20,6 +23,7 @@ public class JPanelHome extends JPanel {
     private JRadioButton jRadioButtonOption3;
 
     private JButton jButtonSendEmail;
+    private JButton jButtonCreateExcel;
 
 
     public JPanelHome() {
@@ -74,6 +78,24 @@ public class JPanelHome extends JPanel {
         jButtonSendEmail.setBounds(300, 100, 150, 30);
         this.add(jButtonSendEmail);
 
+        String[][] matriz = new String[4][3];
+        matriz[0][0] = "Id";
+        matriz[0][1] = "Producto";
+        matriz[0][2] = "Cantidad";
+
+        matriz[1][0] = "asdasd1";
+        matriz[1][1] = "asdasd1";
+        matriz[1][2] = "asdasd1";
+
+        matriz[2][0] = "asdasd2";
+        matriz[2][1] = "asdasd2";
+        matriz[2][2] = "asdasd2";
+
+        jButtonCreateExcel = new JButton("Crear excel");
+        jButtonCreateExcel.addActionListener(e -> createExcel(matriz));
+        jButtonCreateExcel.setBounds(500, 100, 150, 30);
+        this.add(jButtonCreateExcel);
+
     }
 
     private void sendEmail(String to, String subject, String body) {
@@ -104,6 +126,33 @@ public class JPanelHome extends JPanel {
         } catch (MessagingException me) {
             System.out.println(me);
             me.printStackTrace();   //Si se produce un error
+        }
+    }
+
+    private void createExcel(String[][] data) {
+        // Se crea el libro
+        HSSFWorkbook book = new HSSFWorkbook();
+        // Se crea una hoja dentro del libro
+        HSSFSheet sheet = book.createSheet();
+        for (int i = 0; i < data.length; i++) {
+            // Se crea una fila dentro de la hoja
+            HSSFRow fila = sheet.createRow(i);
+            for (int j = 0; j < data[i].length; j++) {
+                // Se crea una celda dentro de la fila
+                HSSFCell cell = fila.createCell(j);
+                // Se crea el contenido de la celda y se mete en ella.
+                HSSFRichTextString texto = new HSSFRichTextString(data[i][j]);
+                cell.setCellValue(texto);
+            }
+        }
+        // Se crea el libro.
+        try {
+            FileOutputStream file = new FileOutputStream("reporte.xls"); // csv
+            book.write(file);
+            file.close();
+            System.out.println("EXCEL CREADO");
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }
